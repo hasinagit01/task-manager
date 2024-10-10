@@ -1,0 +1,30 @@
+Créer un projet en React étape par étape avec les fonctionnalités suivantes :
+Installer React , Shadcn UI, TailwindCSS
+Créer des composants réutilisable pour les ui utilise Shadcn UI et TailwindCSS
+Créer un header footer et un layout pour le projet
+
+
+1. Une page d'accueil avec un titre "Gestionnaire de tâches" et un sous-titre "Gérer vos tâches de manière efficace".
+2. Une barre de navigation en haut avec des liens vers les pages suivantes : "Accueil", "Tâches", "Ajouter une tâche", "A propos" et "Contact".
+3. Une section "Ajouter une tâche" avec un formulaire pour ajouter une nouvelle tâche. Le formulaire doit contenir les champs suivants :
+   - Titre (input text)
+   - Description (textarea)
+   - Date limite (date picker)
+   - Priorité (select avec les options "Basse", "Moyenne", "Haute")
+   - Statut (select avec les options "À faire", "En cours", "Terminée")
+   - Catégorie (select avec les options "Personnel", "Travail", "Études", "Autres")
+4. Une section "Liste des tâches" avec une liste de toutes les tâches ajoutées. Chaque tâche doit avoir un titre, une description, une date limite, une priorité, un statut et une catégorie.
+5. On a la possibilité de supprimer une tâche.
+6. On a la possibilité de modifier une tâche.
+7. On a la possibilité de changer l'état d'une tâche.
+8. On a la possibilité de filtrer les tâches par catégorie.
+9. On a la possibilité de trier les tâches par date limite.
+10. On a la possibilité de trier les tâches par priorité.
+11. On a la possibilité de trier les tâches par statut.
+12. On a la possibilité de trier les tâches par catégorie.
+13. On a la possibilité de trier les tâches par date limite.
+14. On a la possibilité de trier les tâches par priorité.
+15. On a la possibilité de trier les tâches par statut.
+16. On a la possibilité de trier les tâches par catégorie.
+
+Factoriser au maximum les codes et les composants
