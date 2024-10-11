@@ -1,27 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import TaskList from './pages/TaskList';
-import AddTask from './pages/AddTask';
-import About from './pages/About';
-import Contact from './pages/Contact';
 import { TaskProvider } from './context/TaskContext';
+import Header from './components/Header';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <TaskProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/tasks" element={<TaskList />} />
-            <Route path="/add-task" element={<AddTask />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow container mx-auto p-4">
+          <TaskForm />
+          <TaskList />
+        </main>
+        <Footer />
+      </div>
     </TaskProvider>
   );
 }

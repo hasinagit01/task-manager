@@ -1,31 +1,48 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
 
 const TaskContext = createContext();
+
+export const useTaskContext = () => {
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error('useTaskContext must be used within a TaskProvider');
+  }
+  return context;
+};
 
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (task) => {
-    setTasks([...tasks, { ...task, id: Date.now() }]);
-  };
+  const addTask = useCallback((task) => {
+    setTasks(prevTasks => {
+      const newTasks = [...prevTasks, { ...task, id: Date.now() }];
+      console.log('Tasks after adding:', newTasks); // Log pour déboguer
+      return newTasks;
+    });
+  }, []);
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
-  };
+  const toggleTask = useCallback((id) => {
+    setTasks(prevTasks => 
+      prevTasks.map(task => 
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  }, []);
 
-  const editTask = (id, updatedTask) => {
-    setTasks(tasks.map(task => task.id === id ? { ...task, ...updatedTask } : task));
-  };
+  const deleteTask = useCallback((id) => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+  }, []);
 
-  const changeTaskStatus = (id, newStatus) => {
-    setTasks(tasks.map(task => task.id === id ? { ...task, status: newStatus } : task));
-  };
+  const value = useMemo(() => ({
+    tasks,
+    addTask,
+    toggleTask,
+    deleteTask
+  }), [tasks, addTask, toggleTask, deleteTask]);
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask, deleteTask, editTask, changeTaskStatus }}>
+    <TaskContext.Provider value={value}>
       {children}
     </TaskContext.Provider>
   );
 };
-
-export const useTasks = () => useContext(TaskContext);
