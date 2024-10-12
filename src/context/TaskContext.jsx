@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
 
-const TaskContext = createContext();
+export const TaskContext = createContext();
 
 export const useTaskContext = () => {
   const context = useContext(TaskContext);
@@ -14,11 +14,7 @@ export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
   const addTask = useCallback((task) => {
-    setTasks(prevTasks => {
-      const newTasks = [...prevTasks, { ...task, id: Date.now() }];
-      console.log('Tasks after adding:', newTasks); // Log pour déboguer
-      return newTasks;
-    });
+    setTasks(prevTasks => [...prevTasks, { ...task, id: Date.now() }]);
   }, []);
 
   const toggleTask = useCallback((id) => {

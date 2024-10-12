@@ -146,3 +146,63 @@ Pour plus d'informations sur la configuration de Vite, consultez la [documentati
 - [Documentation de shadcn/UI](https://ui.shadcn.com/)
 - [Documentation de Tailwind CSS](https://tailwindcss.com/docs)
 - [Documentation de Vite](https://vitejs.dev/guide/)
+
+# Projet de Gestion de Tâches
+
+## Installation des composants UI
+
+Pour générer les composants UI en JSX à partir de shadcn/ui, suivez ces étapes :
+
+1. Assurez-vous d'avoir installé shadcn/ui dans votre projet :
+
+```
+npx shadcn-ui@latest init
+```
+
+2. Suivez les instructions de l'assistant d'installation de shadcn/UI. Voici les réponses recommandées :
+    - Style : Default
+    - Base color : Slate
+    - Global CSS file : src/index.css
+    - CSS variables : Yes
+    - Tailwind CSS config : tailwind.config.js
+    - Components folder : src/components
+    - Utils folder : src/lib/utils.js
+    - React Server Components : No
+    - Customize default theme : Yes (si vous voulez personnaliser)
+    - Use TypeScript : No
+
+3. Pour générer les composants Button, Card, Combobox et Popover en JSX, utilisez la commande suivante :
+
+```
+npx shadcn-ui@latest add [nom-du-composant]
+```
+
+Par exemple, pour ajouter le composant Button :
+
+```
+npx shadcn-ui@latest add button
+```
+
+## Scripts disponibles
+
+Dans le répertoire du projet, vous pouvez exécuter :
+
+- `npm run dev` : Lance l'application en mode développement.
+- `npm run build` : Compile l'application pour la production dans le dossier `dist`.
+- `npm run preview` : Prévisualise localement la version de production.
+
+## Personnalisation
+
+Vous pouvez personnaliser davantage votre configuration Tailwind et shadcn/UI en modifiant les fichiers `tailwind.config.js` et `components.json`. N'hésitez pas à ajouter des thèmes, des couleurs ou des plugins supplémentaires selon vos besoins.
+
+## Configuration de Vite
+
+Vite est préconfiguré pour fonctionner avec React. Si vous avez besoin de personnaliser la configuration de Vite, vous pouvez le faire en modifiant le fichier `vite.config.js` à la racine du projet.
+
+Pour plus d'informations sur la configuration de Vite, consultez la [documentation officielle de Vite](https://vitejs.dev/config/).
+
+## Ressources supplémentaires
+
+- [Documentation de shadcn/UI](https://ui.shadcn.com/)
+- [Documentation de Tailwind CSS](https://tailwindcss.com/docs)
+- [Documentation de Vite](https://vitejs.dev/guide/)

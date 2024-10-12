@@ -3,9 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-gray-200 p-4 mt-8">
-      <div className="container mx-auto text-center">
-        <p>&copy; 2023 Gestionnaire de tâches. Tous droits réservés.</p>
-      </div>
+      <p className="text-center">© 2023 Task Manager. All rights reserved.</p>
     </footer>
   );
 };

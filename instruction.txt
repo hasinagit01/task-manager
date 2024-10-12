@@ -28,3 +28,4 @@ Créer un header footer et un layout pour le projet
 16. On a la possibilité de trier les tâches par catégorie.
 
 Factoriser au maximum les codes et les composants
+      

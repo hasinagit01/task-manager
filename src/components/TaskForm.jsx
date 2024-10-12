@@ -1,81 +1,97 @@
 import React, { useState } from 'react';
 import { useTaskContext } from '../context/TaskContext';
-import { Button } from "@/components/ui/button";
-
-const INITIAL_FORM_STATE = {
-  title: '',
-  description: '',
-  category: 'Autre',
-  dueDate: '',
-  priority: 'Moyenne'
-};
-
-const categories = ['Travail', 'Personnel', 'Courses', 'Autre'];
-const priorities = ['Basse', 'Moyenne', 'Haute'];
+import { Button } from './ui/button';
+import { Combobox } from './ui/combobox';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Label } from './ui/label';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
 
 const TaskForm = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const { addTask } = useTaskContext();
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [priority, setPriority] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const priorityOptions = [
+    { label: 'Low', value: 'low' },
+    { label: 'Medium', value: 'medium' },
+    { label: 'High', value: 'high' },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.title.trim()) return;
-    console.log('Submitting task:', formData); // Log pour déboguer
-    addTask({ ...formData, completed: false });
-    setFormData(INITIAL_FORM_STATE);
+    if (title.trim()) {
+      const newTask = { 
+        title: title.trim(), 
+        description, 
+        dueDate, 
+        priority, 
+        completed: false,
+        date: new Date().toISOString()
+      };
+      addTask(newTask);
+      setTitle('');
+      setDescription('');
+      setDueDate('');
+      setPriority('');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Titre de la tâche"
-        className="w-full p-2 border rounded"
-      />
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        placeholder="Description de la tâche"
-        className="w-full p-2 border rounded"
-      />
-      <select
-        name="category"
-        value={formData.category}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-      >
-        {categories.map(cat => (
-          <option key={cat} value={cat}>{cat}</option>
-        ))}
-      </select>
-      <input
-        type="date"
-        name="dueDate"
-        value={formData.dueDate}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-      />
-      <select
-        name="priority"
-        value={formData.priority}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-      >
-        {priorities.map(prio => (
-          <option key={prio} value={prio}>{prio}</option>
-        ))}
-      </select>
-      <Button type="submit">Ajouter la tâche</Button>
-    </form>
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle>Add New Task</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter task title"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Enter task description"
+              rows={4}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="dueDate">Due Date</Label>
+            <Input
+              id="dueDate"
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="priority">Priority</Label>
+            <Combobox
+              id="priority"
+              options={priorityOptions}
+              value={priority}
+              onChange={setPriority}
+              placeholder="Select priority"
+            />
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter>
+        <Button type="submit" className="w-full" onClick={handleSubmit}>Add Task</Button>
+      </CardFooter>
+    </Card>
   );
 };
 

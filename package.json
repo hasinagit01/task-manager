@@ -7,11 +7,24 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "add-ui": "shadcn-ui add"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-popover": "^1.0.6",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.6.1",
+    "clsx": "^2.0.0",
+    "cmdk": "^0.2.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.244.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.13.2",
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
